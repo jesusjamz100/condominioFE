@@ -13,6 +13,7 @@ import VerIngreso from "./pages/VerIngreso";
 import VerRecibos from "./pages/VerRecibos";
 import VerRecibo from "./pages/VerRecibo";
 import VerEgresos from "./pages/VerEgresos";
+import { EgresosProvider } from "./context/EgresosProvider";
 
 function App() {
 
@@ -22,20 +23,22 @@ function App() {
                 <PropietariosProvider>
                     <CuentasProvider>
                         <IngresosProvider>
-                            <Routes>
-                                <Route path="/" element={<CondoLayout />}>
-                                    <Route index element={<Dashboard />} />
-                                    <Route path="/propietarios" element={<VerPropietarios />} />
-                                    <Route path="/buscar-propietario" element={<VerPropietario />} />
-                                    <Route path="/cuentas" element={<VerCuentas />} />
-                                    <Route path="/buscar-cuenta" element={<VerCuenta />} />
-                                    <Route path="/ingresos" element={<VerIngresos />} />
-                                    <Route path="/buscar-ingreso" element={<VerIngreso />} />
-                                    <Route path="/recibos" element={<VerRecibos />} />
-                                    <Route path="/buscar-recibo" element={<VerRecibo />} />
-                                    <Route path="/egresos" element={<VerEgresos />} />
-                                </Route>
-                            </Routes>
+                            <EgresosProvider>
+                                <Routes>
+                                    <Route path="/" element={<CondoLayout />}>
+                                        <Route index element={<Dashboard />} />
+                                        <Route path="/propietarios" element={<VerPropietarios />} />
+                                        <Route path="/buscar-propietario" element={<VerPropietario />} />
+                                        <Route path="/cuentas" element={<VerCuentas />} />
+                                        <Route path="/buscar-cuenta" element={<VerCuenta />} />
+                                        <Route path="/ingresos" element={<VerIngresos />} />
+                                        <Route path="/buscar-ingreso" element={<VerIngreso />} />
+                                        <Route path="/recibos" element={<VerRecibos />} />
+                                        <Route path="/buscar-recibo" element={<VerRecibo />} />
+                                        <Route path="/egresos" element={<VerEgresos />} />
+                                    </Route>
+                                </Routes>
+                            </EgresosProvider>
                         </IngresosProvider>
                     </CuentasProvider> 
                 </PropietariosProvider>
