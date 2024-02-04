@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .sidebar-submenu-link {
+        @apply block transition duration-300 hover:transition hover:duration-300 hover:translate-x-3 pl-3 ml-3 my-3 hover:bg-gray-200 w-fit px-3 py-1 rounded-md;
+    }
+
+    .card {
+        @apply bg-white;
+    }
+
+    .form-input {
+        @apply outline-none bg-gray-200 text-base py-4 rounded-lg px-5 mb-5;
+    }
+    .modal {
+        @apply fixed overflow-y-visible flex flex-col shadow-lg min-h-full top-0 left-0 min-w-full opacity-25 bg-black;
+    }
+    .modal-body {
+        @apply fixed w-fit h-fit overflow-auto bg-white p-10 flex flex-col shadow-lg rounded-lg md:min-w-[50%] top-16 lg:left-[35%] md:left-[32%] left-[15%];
+    }
+    .btn-modal {
+        @apply self-end w-fit mb-3 bg-red-500 px-3 rounded-xl py-1 text-white hover:bg-red-600 z-[1] absolute top-8;
+    }
+    .select-buscar {
+        @apply w-full p-5 text-lg outline-none shadow-lg mb-5 rounded-lg;
+    }
+}
