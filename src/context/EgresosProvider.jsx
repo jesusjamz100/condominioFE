@@ -8,6 +8,9 @@ export const EgresosProvider = ({children}) => {
     const [egreso, setEgreso] = useState({});
     const [egresos, setEgresos] = useState([]);
 
+    const [factura, setFactura] = useState({});
+    const [facturas, setFacturas] = useState([]);
+
     const url = import.meta.env.VITE_BACKEND_URL;
 
     useEffect( () => {
@@ -47,7 +50,7 @@ export const EgresosProvider = ({children}) => {
             try {
                 const { data } = await axios.post(`${url}/egresos/`, egreso, config);
                 const { ...egresoAlmacenado } = data;
-                setEgresos(...egresos, egresoAlmacenado);
+                setEgresos([...egresos, egresoAlmacenado]);
             } catch (error) {
                 return {
                     msg: error.response.data.message,
@@ -62,13 +65,84 @@ export const EgresosProvider = ({children}) => {
     }
 
     const eliminarEgreso = async id => {
+        const confirmar = confirm('Confirme que va a eliminar el egreso')
 
-        try {
-            const { data } = await axios.delete(`${url}/egresos/${id}`, config);
-            const egresosActualizados = egresos.filter( egresoState => egresoState.id !== id);
-            setEgresos(egresosActualizados);
-        } catch (error) {
-            console.log(error);
+        if (confirmar) {
+            try {
+                const { data } = await axios.delete(`${url}/egresos/${id}`, config);
+                const egresosActualizados = egresos.filter( egresoState => egresoState.id !== id);
+                setEgresos(egresosActualizados);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+    useEffect( () => {
+        const obtenerFacturas = async () => {
+            try {
+                const { data } = await axios(`${url}/facturas/`);
+                setFacturas(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        obtenerFacturas();
+    }, [factura])
+
+    const guardarFactura = async factura => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
+        if (factura.id) {
+            try {
+                const { data } = await axios.put(`${url}/facturas/${factura.id}`, factura, config);
+                const facturasActualizadas = facturas.map( facturaState => facturaState.id === data.id ? data : facturaState);
+                setFacturas(facturasActualizadas);
+                return {
+                    msg: "Factura actualizada correctamente"
+                }
+            } catch (error) {
+                return {
+                    msg: error.response.data.message,
+                    error: true
+                }
+            }
+        } else {
+            try {
+                const { data } = await axios.post(`${url}/facturas/`, factura, config);
+                const { ...facturaAlmacenada } = data;
+                setFacturas([...facturas, facturaAlmacenada]);
+                return {
+                    msg: "Factura almacenada correctamente"
+                }
+            } catch (error) {
+                return {
+                    msg: error.response.data.message,
+                    error: true
+                }
+            }
+        }
+    }
+
+    const setEdicionFactura = factura => {
+        setFactura(factura)
+    }
+
+    const eliminarFactura = async id => {
+        const confirmar = confirm('Confirme que quiere eliminar la factura');
+
+        if (factura) {
+            try {
+                const { data } = await axios.delete(`${url}/facturas/${id}`);
+                const facturasActualizadas = facturas.filter( facturaState => facturaState.id !== id);
+                setFacturas(facturasActualizadas);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -79,7 +153,12 @@ export const EgresosProvider = ({children}) => {
                 egresos,
                 guardarEgreso,
                 setEdicionEgreso,
-                eliminarEgreso
+                eliminarEgreso,
+                facturas,
+                factura,
+                guardarFactura,
+                setEdicionFactura,
+                eliminarFactura
             }}
         >
             {children}
