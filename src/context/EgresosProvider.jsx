@@ -78,7 +78,8 @@ export const EgresosProvider = ({children}) => {
                 egreso,
                 egresos,
                 guardarEgreso,
-
+                setEdicionEgreso,
+                eliminarEgreso
             }}
         >
             {children}
