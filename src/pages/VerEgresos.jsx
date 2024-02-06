@@ -1,12 +1,14 @@
 import { useState } from "react";
 import useEgresos from "../hooks/useEgresos";
+import EgresoCard from "../components/EgresoCard";
+import Modal from "../components/Modal";
 
 const VerEgresos = () => {
 
     const [egresosQuery, setEgresosQuery] = useState('');
     const [query, setQuery] = useState('');
 
-    const { egresos, setEdicionEgresos } = useEgresos();
+    const { egresos, setEdicionEgreso } = useEgresos();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -47,15 +49,29 @@ const VerEgresos = () => {
                     <p className="text-center text-3xl font-bold mb-10">Lista de egresos</p>
                     <div className="flex flex-wrap gap-6 justify-center">
                         {egresosQuery ? egresosQuery.map( egreso => (
-                            <>{egreso.descripcion}</>
+                            <EgresoCard
+                                key={egreso.id}
+                                egreso={egreso}
+                            />
                         )) : egresos.map( egreso => (
-                            <>{egreso.descripcion}</>
+                            <EgresoCard
+                                key={egreso.id}
+                                egreso={egreso}
+                            />
                         ))}
                     </div>
                 </>
             ) : (
                 <p className="text-center text-xl">No hay egresos</p>
             )}
+            <button 
+                className="fixed z-[10] px-3 py-2 bg-green-500 hover:bg-green-600 text-xl font-extrabold rounded-full text-white left-[95%] bottom-10"
+                onClick={() => {
+                    setEdicionEgreso({});
+                    setIsOpen(true);
+                }}
+                >+</button>
+            {isOpen && <Modal setIsOpen={setIsOpen}></Modal>}
         </>
     )
 }

@@ -14,7 +14,7 @@ export const EgresosProvider = ({children}) => {
     const url = import.meta.env.VITE_BACKEND_URL;
 
     useEffect( () => {
-        const obtenerCuentas = async () => {
+        const obtenerEgresos = async () => {
             try {
                 const { data } = await axios(`${url}/egresos`);
                 setEgresos(data);
@@ -22,7 +22,7 @@ export const EgresosProvider = ({children}) => {
                 console.log(error);
             }
         };
-        obtenerCuentas();
+        obtenerEgresos();
     }, [egreso])
 
     const guardarEgreso = async egreso => {

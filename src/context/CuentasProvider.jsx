@@ -13,7 +13,7 @@ export const CuentasProvider = ({children}) => {
     useEffect( () => {
         const obtenerCuentas = async () => {
             try {
-                const { data } = await axios(`${url}/cuentas`);
+                const { data } = await axios(`${url}/cuentas/`);
                 setCuentas(data);
             } catch (error) {
                 console.log(error);
@@ -42,7 +42,7 @@ export const CuentasProvider = ({children}) => {
             }
         } else {
             try {
-                const { data } = await axios.post(`${url}/cuentas`, cuenta, config);
+                const { data } = await axios.post(`${url}/cuentas/`, cuenta, config);
                 const { ...cuentaAlmacenada } = data;
                 setCuentas([...cuentas, cuentaAlmacenada])
                 return {
