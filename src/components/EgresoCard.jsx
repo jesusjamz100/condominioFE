@@ -3,6 +3,7 @@ import useEgresos from '../hooks/useEgresos';
 import useCuentas from '../hooks/useCuentas';
 import formatearFecha from '../utils/formatearFecha';
 import Modal from './Modal';
+import FormEgreso from './FormEgreso';
 
 const EgresoCard = ({egreso}) => {
 
@@ -37,7 +38,7 @@ const EgresoCard = ({egreso}) => {
                     >Eliminar</button>
                 </div>
             </div>
-            {isOpen && <Modal setIsOpen={setIsOpen}>Hola</Modal>}
+            {isOpen && <Modal setIsOpen={setIsOpen}><FormEgreso /></Modal>}
         </>
     )
 }

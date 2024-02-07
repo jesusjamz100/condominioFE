@@ -2,6 +2,7 @@ import { useState } from "react";
 import useEgresos from "../hooks/useEgresos";
 import EgresoCard from "../components/EgresoCard";
 import Modal from "../components/Modal";
+import FormEgreso from "../components/FormEgreso";
 
 const VerEgresos = () => {
 
@@ -71,7 +72,7 @@ const VerEgresos = () => {
                     setIsOpen(true);
                 }}
                 >+</button>
-            {isOpen && <Modal setIsOpen={setIsOpen}></Modal>}
+            {isOpen && <Modal setIsOpen={setIsOpen}><FormEgreso /></Modal>}
         </>
     )
 }
