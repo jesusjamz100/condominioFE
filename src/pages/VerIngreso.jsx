@@ -2,7 +2,7 @@ import { useState } from "react";
 import useIngresos from "../hooks/useIngresos";
 import useCuentas from "../hooks/useCuentas";
 import usePropietarios from "../hooks/usePropietarios";
-import axios from "axios";
+import formatearFecha from "../utils/formatearFecha";
 
 
 const VerIngreso = () => {
@@ -18,17 +18,11 @@ const VerIngreso = () => {
         const id = e.target.value;
         try {
             setIngreso(await ingresos.find( ingreso => ingreso.id === parseInt(id)));
-            console.log(ingreso)
             setCuenta(cuentas.filter( cuenta => cuenta.id === ingreso.cuenta_id));
             setPropietario(propietarios.filter( propietario => propietario.id === ingreso.recibo.propietario_id));
         } catch (error) {
             console.log(error);
         }
-    }
-
-    const formatearFecha = fecha => {
-        const nuevaFecha = new Date(fecha);
-        return new Intl.DateTimeFormat('es-VE', {dateStyle: 'long'}).format(nuevaFecha);
     }
 
     return (
