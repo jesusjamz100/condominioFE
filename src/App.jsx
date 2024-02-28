@@ -14,6 +14,7 @@ import VerRecibos from "./pages/VerRecibos";
 import VerRecibo from "./pages/VerRecibo";
 import VerEgresos from "./pages/VerEgresos";
 import { EgresosProvider } from "./context/EgresosProvider";
+import VerEgreso from "./pages/VerEgreso";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
                                         <Route path="/recibos" element={<VerRecibos />} />
                                         <Route path="/buscar-recibo" element={<VerRecibo />} />
                                         <Route path="/egresos" element={<VerEgresos />} />
+                                        <Route path="/buscar-egreso" element={<VerEgreso />} />
                                     </Route>
                                 </Routes>
                             </EgresosProvider>
