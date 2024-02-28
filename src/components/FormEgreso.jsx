@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useEgresos from "../hooks/useEgresos";
 import useCuentas from "../hooks/useCuentas";
 import Alerta from '../components/Alerta';
+import FormFactura from "./FormFactura";
 
 const FormEgreso = () => {
 
@@ -81,9 +82,9 @@ const FormEgreso = () => {
                         value={id ? 'Editar Egreso' : 'Agregar Egreso'}
                     />
                 </form>
-                {/* {mostrarRecibo && (
-                    <FormRecibo recibo={recibo} />
-                )} */}
+                {mostrarFactura && (
+                    <FormFactura factura={factura} />
+                )}
             </div>
             <p className="underline text-gray-400 cursor-pointer select-none" onClick={handleClick}>Editar Factura</p>
         </div>
