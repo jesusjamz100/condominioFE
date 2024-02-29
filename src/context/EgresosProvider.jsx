@@ -135,7 +135,7 @@ export const EgresosProvider = ({children}) => {
     const eliminarFactura = async id => {
         const confirmar = confirm('Confirme que quiere eliminar la factura');
 
-        if (factura) {
+        if (confirmar) {
             try {
                 const { data } = await axios.delete(`${url}/facturas/${id}`);
                 const facturasActualizadas = facturas.filter( facturaState => facturaState.id !== id);
