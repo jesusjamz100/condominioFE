@@ -108,7 +108,7 @@ const Header = () => {
                         <Link to='/buscar-egreso' className={`${egresos ? 'sidebar-submenu-link' : 'hidden'}  text-lg text-gray-400`}>
                             Buscar Egreso
                         </Link>
-                        <Link className={`${egresos ? 'sidebar-submenu-link' : 'hidden'}  text-lg text-gray-400`}>
+                        <Link to='/facturas' className={`${egresos ? 'sidebar-submenu-link' : 'hidden'}  text-lg text-gray-400`}>
                             Ver Facturas
                         </Link>
                         <Link className={`${egresos ? 'sidebar-submenu-link' : 'hidden'}  text-lg text-gray-400`}>
