@@ -29,7 +29,10 @@ const EgresoCard = ({egreso}) => {
                         className="px-3 rounded-lg font-bold hover:bg-blue-500 text-blue-500 hover:text-white border border-blue-500 w-fit py-1 mt-2"
                         onClick={() => {
                             setEdicionEgreso(egreso);
-                            setIsOpen(true)
+                            setIsOpen(true);
+                            if (egreso.factura) {
+                                setEdicionFactura(egreso.factura);
+                            }
                         }}
                     >Editar</button>
                     <button 

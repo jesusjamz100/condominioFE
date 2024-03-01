@@ -6,7 +6,7 @@ import FacturaCard from "../components/FacturaCard";
 
 const VerFacturas = () => {
 
-    const { facturas } = useEgresos();
+    const { facturas, setEdicionFactura } = useEgresos();
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -26,11 +26,11 @@ const VerFacturas = () => {
             <button 
                 className="fixed z-[10] px-3 py-2 bg-green-500 hover:bg-green-600 text-xl font-extrabold rounded-full text-white left-[95%] bottom-10"
                 onClick={() => {
-                    setEdicionRecibo({});
+                    setEdicionFactura({});
                     setIsOpen(true);
                 }}
                 >+</button>
-            {isOpen && <Modal setIsOpen={setIsOpen}><FormRecibo /></Modal>}
+            {isOpen && <Modal setIsOpen={setIsOpen}><FormFactura /></Modal>}
         </>
     )
 }
